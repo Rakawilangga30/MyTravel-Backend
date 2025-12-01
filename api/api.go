@@ -44,7 +44,7 @@ func connectDB() {
 	dbName := os.Getenv("DB_NAME")
 	secret := os.Getenv("SESSION_KEY")
 
-	if dbName == "" { dbName = "MyTravelDB" }
+	if dbName == "" { dbName = "MyTravel" }
 	if secret == "" { secret = "MYTRAVEL_SECRET_KEY" }
 	if uri == "" { fmt.Println("Warning: MONGO_URI kosong!") }
 
