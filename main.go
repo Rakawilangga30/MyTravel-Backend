@@ -5,15 +5,13 @@ import (
 	"net/http"
 	"os"
 
-	"MyTravel/api"
+	// Import folder "api", tapi nama packagenya sekarang "handler"
+	"MyTravel/api" 
 )
 
 func main() {
-	// Koneksi DB (Local)
-	api.ConnectDB()
-
-	// Gunakan NewRouter (bukan Handler lagi)
-	http.Handle("/", api.NewRouter())
+	// SetupRouter dari package handler (karena di api/api.go package handler)
+	r := handler.SetupRouter()
 
 	port := os.Getenv("PORT")
 	if port == "" {
@@ -21,7 +19,7 @@ func main() {
 	}
 
 	log.Println("MyTravel backend running on port:", port)
-	err := http.ListenAndServe(":"+port, nil)
+	err := http.ListenAndServe(":"+port, r)
 	if err != nil {
 		log.Fatal(err)
 	}
